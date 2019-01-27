@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="icon" href="clock.png" type="image/png" sizes="16x16">
+</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Clock Server</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body onload="startTime()">
+    <script src="script.js"></script>
+    <div id="txt"></div>
+  <script>
+    function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  //this variable contains the time as a string
+  var string = h + ":" + m + ":" + s;
+  //this converts string to a set of HTML img tags containing images
+  var img = stringToImage(string);
+  //this puts the time on the website
+  document.getElementById('txt').innerHTML = img;
+  //this loops the function every 1000 milliseconds (1 second)
+  var t = setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i
+  } // add zero in front of numbers < 10
+  return i;
+}
+
+//This function takes each letter of an array and pairs it to an image of the img array 
+function stringToImage(s) {
+  //create a temporary blank variable to hold HTML images
+  var temp = ""
+  for (var i = 0; i < s.length; i++) {
+    //we take the URL from array img and shove it into an HTML img tag
+    //also append it to the temporary variable
+    temp = temp + "<img src='" + img[s[i]] + "'/>"
+  }
+  //uncomment below line to see what the temporary variable says
+  //console.log(temp)
+  return temp
+}
+
+
+//all image URLs are put into this array. feel free to change URLs
+var img = {
+  "1": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number1.jpg",
+  "2": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number2.jpg",
+  "3": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number3.jpg",
+  "4": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number4.jpg",
+  "5": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number5.jpg",
+  "6": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number6.jpg",
+  "7": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number7.jpg",
+  "8": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number8.jpg",
+  "9": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number9.jpg",
+  "0": "http://www.kidsmathgamesonline.com/images/pictures/numbers120/number0.jpg",
+  ":": "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.colonsemicolon.com%2Fwp-content%2Fuploads%2F2012%2F02%2Fcolon.gif&f=1"
+}
+  </script>
+  </body>
+</html>
